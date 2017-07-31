@@ -31,26 +31,16 @@
 
 <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="two-thirds column" style="margin-top: 25%">
-        <h4>Simple Todo App using Vue.js</h4>
-        <p></p>
-        <div class="row">
-          <div class="nine columns">
-            <input class="u-full-width" type="email" placeholder="Add Item" id="exampleEmailInput">
-          </div>
-          <div class="three columns">
-            <a class="button" href="#">ADD</a>            
-          </div>
-        </div>        
-        <ul id="mainlist">
-          <li v-for="item in items">
-            {{ item.message }}
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div id="todo-list">
+  <input v-model="todoText" placeholder="Input TODO"/>
+  <button v-on="click:add" v-attr="disabled:!todoText">Add</button>
+  <button v-on="click:deleteAll">Delete all</button>
+
+  <div v-repeat="items">
+    <span v-on="click:done=!done" v-style="text-decoration:done?'line-through':''">{{$index}} - {{text}}</span>
+    <button v-on="click:delete">Delete</button>
+  </div>
+</div>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
